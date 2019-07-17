@@ -13,6 +13,10 @@ class Form(QWidget):
         self.ui = loader.load(file,self)
         file.close()
 
+        self.setLayout(self.ui.gridLayout)
+        self.ui.labelC.setText("Coucou")
+        self.ui.lcdNumberC.display(39)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
