@@ -60,7 +60,11 @@ class Repertoire(QWidget):
         for fiche in self.monRepertoire["repertoire"]:
             self.lwListeNoms.addItem(fiche["nom"])
 
-    #def addUser(self):
+    def addUser(self):
+        retour = QInputDialog().getText(self, "Ajout Utilisateur", "Nom:")
+        if retour[0] == "":
+            return
+        # A completer
 
     #def modifyUser(self):
 
