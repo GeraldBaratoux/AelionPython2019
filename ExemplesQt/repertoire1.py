@@ -23,7 +23,7 @@ class Repertoire(QWidget):
         self.monRepertoire = self.lireJSON(filename)
 
         #self.lwListeNoms.itemClicked.connect(self.userSelected)
-        #self.pbAjouter.clicked.connect(self.addUser)
+        self.pbAjouter.clicked.connect(self.addUser)
         #self.pbModifier.clicked.connect(self.modifyUser)
 
         layoutLabels = QVBoxLayout()
