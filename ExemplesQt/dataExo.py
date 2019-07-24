@@ -52,12 +52,14 @@ plt.xticks(np.arange(1,8), labels, rotation=45)
 plt.legend()
 
 ax = plt.subplot(212)
+plt.annotate(
+        'T°Moy:'+str("%.2f"%tempMoy)+'\nT°Min:'+str("%.2f" %tempMin)+'\nT°Max'+str("%.2f" %tempMax),
+        xy=(18, 25), xytext=(16, 27))
 #plt.subplots_adjust(top=20, bottom=0.08, left=0.10, right=0.95, hspace=0.25, wspace=0.35)
 
 plt.plot(jours,tMoyC, label='Moyenne')
-ax.annotate('valeur', xy=(12, 25.27), xytext=(15, 28), arrowprops=dict(facecolor='black'))
+ax.annotate('valeur', xy=(12, 25.27), xytext=(14, 22), arrowprops=dict(facecolor='black'))
 plt.legend()
-
 
 plt.tight_layout(pad=1, w_pad=0.4, h_pad=0.5)
 plt.show()
