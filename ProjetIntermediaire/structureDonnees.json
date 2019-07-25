@@ -1,6 +1,7 @@
 {
   "academies":
   [
+    {
     "nom":str,
     "etablissements":
       [
@@ -40,6 +41,8 @@
                       ]
                     }
                   ]
+        }
+
         }
       ]
 }
