@@ -1,0 +1,9 @@
+Vous développerez un logiciel de gestion de notes pour des professeurs.
+Les données seront stockées au format JSON
+L'interface graphique sera développée en utilisant Qt
+Pour chaque élève un graphique radar sera généré pour voir son niveau par rapport à la classe
+Celui-ci devra permettre la creation modification et suppression des classes, elèves, matieres et notes
+
+Le projet se déroulera en plusieurs étapes:
+-Détermination en groupe du format du JSON
+-Création des diagrammes d'utilisation du programme (travail
