@@ -1,0 +1,35 @@
+{
+  "academie":str,
+  "etablissements":
+    [
+      {
+        "nom":str,
+        "adresse":str,
+        "classes":
+                [
+                  {
+                    "nom":str,
+                    "prenom":str,
+                    "adresse":str,
+                    "appreciationPP":str,
+                    "matieres":
+                            [
+                              {
+                                "nom":str,
+                                "coef":float,
+                                "appreciation":str,
+                                "notes":
+                                        [
+                                          {
+                                            "nom":str,
+                                            "coef": float,
+                                            "valeur":float
+                                          }
+                                        ]
+                              }
+                            ]
+                  }
+                ]
+      }
+    ]
+}
