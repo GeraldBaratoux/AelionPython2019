@@ -9,25 +9,33 @@
                 [
                   {
                     "nom":str,
-                    "prenom":str,
-                    "adresse":str,
-                    "appreciationPP":str,
-                    "matieres":
-                            [
-                              {
-                                "nom":str,
-                                "coef":float,
-                                "appreciation":str,
-                                "notes":
-                                        [
-                                          {
-                                            "nom":str,
-                                            "coef": float,
-                                            "valeur":float
-                                          }
-                                        ]
-                              }
-                            ]
+                    "anneeSco":str,
+                    "PP":str,
+                    "eleves":
+                    [
+                      {
+                        "nom":str,
+                        "prenom":str,
+                        "adresse":str,
+                        "appreciationPP":str,
+                        "matieres":
+                              [
+                                {
+                                  "nom":str,
+                                  "coef":float,
+                                  "appreciation":str,
+                                  "notes":
+                                          [
+                                            {
+                                              "nom":str,
+                                              "coef": float,
+                                              "valeur":float
+                                            }
+                                          ]
+                                }
+                              ]
+                      }
+                    ]
                   }
                 ]
       }
