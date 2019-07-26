@@ -18,8 +18,6 @@ class MainWindow(QWidget):
         self.ui.cbClasse.currentIndexChanged.connect(self.updateMatiere)
         self.ui.cbMatiere.currentIndexChanged.connect(self.updateSaisieEleve)
 
-
-
         self.updateAcademies()
 
     def updateAcademies(self):
@@ -47,10 +45,6 @@ class MainWindow(QWidget):
         listeMatieresUniques = np.unique(listeMatieres)
         self.ui.cbMatiere.addItems(listeMatieresUniques)
 
-
-
-
-
     def updateSaisieEleve(self):
         cpt = 0
         self.ui.twNotes.clear()
@@ -71,17 +65,6 @@ class MainWindow(QWidget):
 
         self.ui.twNotes.setHorizontalHeaderLabels(['Nom', 'Note'])
 
-
-
-
-
-
-
-
-
-        #self.ui.twNotes.horizontalHeaderItem(0).setText(QApplication.translate("Form", "gggg", None, -1))
-        #self.ui.twNomsEleves.setColumnCount(2)
-        #self.ui.twNomsEleves.horizontalHeaderItem(0).setText(QApplication.translate("Form", "Nom", None, -1))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
