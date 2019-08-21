@@ -6,6 +6,6 @@ Doc Numpy:https://numpy.org/devdocs/user/quickstart.html
 
 Doc MatplotLib:https://matplotlib.org/users/pyplot_tutorial.html
 
-Outil sqlite3 http://download.orbmu2k.de/download.php?id=19
+Outil Sqlite3 http://download.orbmu2k.de/download.php?id=19
 
 
