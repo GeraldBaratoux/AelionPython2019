@@ -3,9 +3,6 @@ import sqlite3
 
 app = Flask(__name__)
 
-app.config['DEBUG'] = True
-app.config['SECRET_KEY'] = 'Thisisasecret!'
-
 def connect_db():
     sql = sqlite3.connect('/mnt/c/Users/antho/Documents/data.db')
     sql.row_factory = sqlite3.Row
@@ -26,5 +23,5 @@ def index():
     return '<h1>Hello, World!</h1>'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
