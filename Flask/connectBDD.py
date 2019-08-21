@@ -4,7 +4,7 @@ import sqlite3
 app = Flask(__name__)
 
 def connect_db():
-    sql = sqlite3.connect('/mnt/c/Users/antho/Documents/data.db')
+    sql = sqlite3.connect('data.db')
     sql.row_factory = sqlite3.Row
     return sql
 
