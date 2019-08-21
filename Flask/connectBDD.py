@@ -3,6 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
+
 def connect_db():
     sql = sqlite3.connect('data.db')
     sql.row_factory = sqlite3.Row
