@@ -23,7 +23,6 @@ def close_db(error):
 
 @app.route('/')
 def index():
-    session.pop('name', None)
     return '<h1>Hello, World!</h1>'
 
 if __name__ == '__main__':
