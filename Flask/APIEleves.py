@@ -9,10 +9,12 @@ def get_db():
         g.sqlite_db = connect_db()
     return g.sqlite_db
 
+
 @app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
+
 
 def dict_factory(cursor, row):
     d = {}
@@ -20,10 +22,12 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
+
 def connect_db():
     sql = sqlite3.connect('gestioneleves.sqlite3')
     sql.row_factory = dict_factory #sqlite3.Row #avoir un dict plutôt qu’un tuple
     return sql
+
 
 @app.route('/eleve', methods=['GET'])
 def get_eleves():
@@ -33,6 +37,43 @@ def get_eleves():
     eleve = eleve_cur.fetchall()
     return jsonify({'eleves':eleve})
 
+
+@app.route('/eleve/<int:eleve_id>', methods=['GET'])
+def get_eleve(eleve_id):
+    db = get_db()
+    eleve_cur = db.execute('SELECT eleve.nom, eleve.prenom, eleve.adresse, classe.id AS idclasse, etablissement.id AS '
+                           'idetablissement, etablissement.nom AS nometablissement, classe.nom AS nomclasse, '
+                           'academie.nom AS nomacademie, academie.id AS idacademie FROM eleve'
+                           ' INNER JOIN classe ON classe.id = eleve.idclasse '
+                           'INNER JOIN etablissement ON etablissement.id = classe.idetablisement '
+                           'INNER JOIN academie ON academie.id = etablissement.idacademie '
+                           'where eleve.id={}'.format(eleve_id))
+    eleve = eleve_cur.fetchone()
+    return jsonify({'eleve': eleve})
+
+
+@app.route('/eleve/<int:eleve_id>', methods=['PUT'])
+def put_eleve(eleve_id):
+    nom = request.args.get('nom')
+    prenom = request.args.get('prenom')
+    adresse = request.args.get('adresse')
+
+    db = get_db()
+
+    if nom is not None:
+        req = "UPDATE eleve set nom='{}' WHERE id='{}'".format(nom,eleve_id)
+        db.execute(req)
+        db.commit()
+
+    if prenom is not None:
+        db.execute("UPDATE eleve set prenom='{}' WHERE id='{}'".format(prenom,eleve_id))
+        db.commit()
+
+    if adresse is not None:
+        db.execute("UPDATE eleve set adresse='{}' WHERE id='{}'".format(adresse,eleve_id))
+        db.commit()
+
+    return jsonify({'status':'ok'})
 
 
 if __name__ == '__main__':
