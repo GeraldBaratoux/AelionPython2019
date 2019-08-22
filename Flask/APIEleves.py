@@ -1,5 +1,5 @@
 from flask import Flask, g, request, jsonify
-import sqlite3
+import sqlite3, json
 
 
 app = Flask(__name__)
@@ -77,6 +77,26 @@ def put_eleve(eleve_id):
         db.commit()
 
     return jsonify({'status':'ok'})
+
+@app.route('/eleve', methods=['POST'])
+def post_eleve():
+    recup = request.get_json()
+
+    if 'nom' not in recup or 'prenom' not in recup or 'adresse' not in recup or 'idclasse' not in recup:
+        return jsonify({'status': 'no data in the request'})
+
+    db = get_db()
+    nom = recup['nom']
+    prenom = recup['prenom']
+    adresse = recup['adresse']
+    idclasse = recup['idclasse']
+
+    req = "insert into eleve (nom, prenom, adresse, idclasse) values ('{}', '{}', '{}', {})".format(nom, prenom, adresse, idclasse)
+
+    db.execute(req)
+    db.commit()
+
+    return jsonify({'status': 'ok'})
 
 
 if __name__ == '__main__':
