@@ -31,7 +31,7 @@ def get_eleves():
     #eleve_cur = db.execute('select id, nom, prenom, adresse, idclasse from eleve')
     eleve_cur = db.execute('SELECT eleve.nom, eleve.prenom, eleve.adresse, eleve.id, classe.id AS idclasse, etablissement.id AS idetablissement, etablissement.nom AS nometablissement, classe.nom AS nomclasse, academie.nom AS nomacademie, academie.id AS idacademie FROM eleve INNER JOIN classe ON classe.id = eleve.idclasse INNER JOIN etablissement ON etablissement.id = classe.idetablisement INNER JOIN academie ON academie.id = etablissement.idacademie')
     eleve = eleve_cur.fetchall()
-    return jsonify({'members':eleve})
+    return jsonify({'eleves':eleve})
 
 
 
