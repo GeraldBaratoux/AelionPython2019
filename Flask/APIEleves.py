@@ -58,6 +58,9 @@ def put_eleve(eleve_id):
     prenom = request.args.get('prenom')
     adresse = request.args.get('adresse')
 
+    if nom is None and prenom is None and adresse is None:
+        return jsonify({'status': 'no data in the request'})
+
     db = get_db()
 
     if nom is not None:
