@@ -1,6 +1,7 @@
-from flask import Flask, g, request, jsonify
+from flask import Flask, g, request, jsonify, send_file
 import sqlite3, json
-
+import matplotlib.pyplot as plt
+import numpy as np
 
 app = Flask(__name__)
 
@@ -97,6 +98,45 @@ def post_eleve():
     db.commit()
 
     return jsonify({'status': 'ok'})
+
+
+@app.route('/eleve/<int:eleve_id>', methods=['DELETE'])
+def delete_eleves(eleve_id):
+    db = get_db()
+    db.execute("DELETE from eleve where id='{}'".format(eleve_id))
+    db.commit()
+    return jsonify({'status': 'ok'})
+
+@app.route('/radar/<int:eleve_id>', methods=['GET'])
+def get_radar(eleve_id):
+    db = get_db()
+    req = f" SELECT matierenom, moyenne from MoyennesMatieres where eleveid = {eleve_id}"
+    eleve_cur = db.execute(req)
+    moyenneR = eleve_cur.fetchall()
+
+    listMatElev = []
+    listMoyElev = []
+    for m in moyenneR:
+        matNom = m['matierenom']
+        listMatElev.append(matNom)
+        moy = m['moyenne']
+        listMoyElev.append(moy)
+
+    angles = np.linspace(0, 2 * np.pi, len(moyenneR), endpoint=False)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, polar=True)
+    ax.plot(angles, listMoyElev, 'o-', linewidth=2, label="Elève")
+    ax.fill(angles, listMoyElev, alpha=0.2)
+    ax.set_thetagrids(angles * 180 / np.pi, listMatElev)
+    plt.yticks([2, 4, 6, 8, 10, 12, 14, 16, 18], color="grey", size=7)
+    plt.ylim(0, 20)
+    ax.set_title(f'{eleve_id}')
+    ax.grid(True)
+    plt.legend(loc='upper right')
+    #     # plt.show()
+    plt.savefig("radar_tmp.png")
+
+    return send_file("radar_tmp.png", attachment_filename='fig_eleve{}.png'.format(eleve_id))
 
 
 if __name__ == '__main__':
